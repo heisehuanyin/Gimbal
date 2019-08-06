@@ -1,30 +1,21 @@
 package softart.task;
 
-import softart.EmpowerServiceFeature;
-import softart.MsgException;
-import softart.Reply;
-import softart.ReplyFeature;
+import softart.*;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.util.HashMap;
+import java.io.*;
 
 public class TaskGroove implements Runnable {
-    private HashMap<String, TaskServer> pStack = null;
-    private EmpowerServiceFeature service = null;
+    private SyncWorksServer server = null;
     private String token = "";
-    private BufferedWriter writer = null;
-    private BufferedReader reader = null;
+    private InputStream inputStream = null;
+    private OutputStream outputStream = null;
 
-    public TaskGroove(HashMap<String, TaskServer> pStack, EmpowerServiceFeature servie,
-                      String token, BufferedReader reader, BufferedWriter writer) {
-        this.pStack = pStack;
-        this.service = servie;
+    public TaskGroove(SyncWorksServer server, String token, InputStream input, OutputStream output) {
+        this.server = server;
         this.token = token;
 
-        this.reader = reader;
-        this.writer = writer;
+        this.inputStream = input;
+        this.outputStream = output;
     }
 
     @Override
@@ -34,7 +25,7 @@ public class TaskGroove implements Runnable {
 
             TaskRequestFeature request = null;
             try {
-                request = new TaskRequest(reader);
+                request = new TaskRequest(inputStream);
             } catch (MsgException e) {
                 System.out.println("任务分析过程异常+++++++++++");
                 System.out.println(e.type() + "<" + e.getDetail() + ">.");
@@ -42,7 +33,7 @@ public class TaskGroove implements Runnable {
 
                 try {
                     ReplyFeature reply = new Reply(token, false);
-                    reply.supply(e.type() + "<" + e.getDetail() + ">.").postReplyToClient(writer);
+                    reply.supply(e.type() + "<" + e.getDetail() + ">.").postReply(outputStream);
                 } catch (MsgException e1) {
                     System.out.println(e1.type()+"<"+e1.getDetail()+">.");
                     e1.printStackTrace();
@@ -65,7 +56,7 @@ public class TaskGroove implements Runnable {
 
                 try {
                     ReplyFeature reply = new Reply(token, false);
-                    reply.supply("权限鉴别过程异常<未知权限:" + temp + ">.").postReplyToClient(writer);
+                    reply.supply("权限鉴别过程异常<未知权限:" + temp + ">.").postReply(outputStream);
                 } catch (MsgException e1) {
                     System.out.println(e1.type()+"<"+e1.getDetail()+">.");
                     e1.printStackTrace();
@@ -77,13 +68,13 @@ public class TaskGroove implements Runnable {
 
             try {
                 ReplyFeature reply = null;
-                if (!service.privilegeCheck(request.getUuidStr(), request.getKeyString(), type)) {
+                if (!server.getEmpower().privilegeCheck(request.getUuidStr(), request.getKeyString(), type)) {
                     reply = new Reply(token, false).supply("权限不足");
-                    reply.postReplyToClient(writer);
+                    reply.postReply(outputStream);
                     continue;
                 } else {
                     reply = new Reply(token, true).supply("Please Continue");
-                    reply.postReplyToClient(writer);
+                    reply.postReply(outputStream);
                 }
             } catch (MsgException e) {
                 System.out.println(e.type()+"<"+e.getDetail()+">.");
@@ -94,13 +85,14 @@ public class TaskGroove implements Runnable {
 
 
 
-            TaskServer processor = pStack.get(request.taskMark()).newEntities(request, reader, writer);
+            TaskServer processor = server.getpStack().get(request.taskMark())
+                    .newEntities(request, inputStream, outputStream);
             processor.taskProcess();
         }
 
         try {
-            writer.close();
-            reader.close();
+            outputStream.close();
+            inputStream.close();
         } catch (IOException e) {
             System.out.println("Socket关闭异常+++++++++++++");
             e.printStackTrace();

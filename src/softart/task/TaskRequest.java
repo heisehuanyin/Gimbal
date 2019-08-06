@@ -6,9 +6,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.BufferedReader;
-import java.net.Socket;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
@@ -28,13 +26,13 @@ public class TaskRequest extends Request implements TaskRequestFeature {
     }
 
     /**
-     * 载入Socket中的内容，根据提交信息生成请求，用于服务器端解析
+     * 载入内容，根据提交信息生成请求，用于服务器端解析
      *
-     * @param reader 读取端口
+     * @param input 读取端口
      * @throws MsgException 异常
      */
-    public TaskRequest(BufferedReader reader) throws MsgException {
-        super(reader);
+    public TaskRequest(InputStream input) throws MsgException {
+        super(input);
 
         Document doc = this.getDoc();
         NodeList taskMasks = doc.getElementsByTagName("task-mask");

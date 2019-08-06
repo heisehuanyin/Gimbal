@@ -4,8 +4,8 @@ import softart.EmpowerServiceFeature;
 import softart.task.TaskServer;
 import softart.task.TaskRequestFeature;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.Socket;
 
 public class TalkServer implements TaskServer {
@@ -31,12 +31,12 @@ public class TalkServer implements TaskServer {
      * 新建可运行处理实体
      *
      * @param request 消息头XML的根节点
-     * @param reader  socket端口
-     * @param writer
+     * @param input  socket端口
+     * @param output
      * @return 返回一个可运行实体
      */
     @Override
-    public TaskServer newEntities(TaskRequestFeature request, BufferedReader reader, BufferedWriter writer) {
+    public TaskServer newEntities(TaskRequestFeature request, InputStream input, OutputStream output) {
         TalkServer rtn = new TalkServer();
 
 

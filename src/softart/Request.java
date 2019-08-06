@@ -59,16 +59,19 @@ public class Request implements RequestFeature {
 
     /**
      * 载入Socket中的内容，根据提交信息生成请求，用于服务器端解析
-     * @param readbuff socket端口
+     * @param input socket端口
      * @throws MsgException 异常
      */
-    public Request(BufferedReader readbuff) throws MsgException {
+    public Request(InputStream input) throws MsgException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(
+                input, Charset.forName("UTF-8")
+        ));
 
         String content = "", temp = "";
         try {
             while (!temp.equals("MSG_SPLIT")) {
                 content += temp;
-                temp = readbuff.readLine();
+                temp = reader.readLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -176,10 +179,13 @@ public class Request implements RequestFeature {
     /**
      * 向socket端口发送request
      *
-     * @param writer 端口
+     * @param output 端口
      */
     @Override
-    public void postRequestToServer(BufferedWriter writer) throws MsgException {
+    public void postRequest(OutputStream output) throws MsgException {
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
+                output, Charset.forName("UTF-8")
+        ));
 
         try {
             writer.write(this.toString());

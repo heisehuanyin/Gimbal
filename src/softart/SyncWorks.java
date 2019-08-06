@@ -4,6 +4,7 @@ import softart.task.TaskRequest;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.*;
 import java.util.Scanner;
@@ -28,22 +29,20 @@ public class SyncWorks {
     }
 
     public void doWork() {
-        BufferedWriter writer = null ;
+        OutputStream output = null;
         try {
-            writer = new BufferedWriter(new OutputStreamWriter(
-                    socket.getOutputStream(),"UTF-8"
-            ));
+            output = socket.getOutputStream();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         try {
             RequestFeature request = new Request("token","pwd");
-            request.postRequestToServer(writer);
+            request.postRequest(output);
 
             TaskRequest req = new TaskRequest("uuid","token",
                     EmpowerService.Privileges.TalkService.toString());
-            req.postRequestToServer(writer);
+            req.postRequest(output);
         } catch (MsgException e) {
             e.printStackTrace();
         }

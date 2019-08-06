@@ -20,6 +20,12 @@ public class SyncWorksServer {
     private ThreadPoolExecutor tPool = new ThreadPoolExecutor(4, 500,
             1, TimeUnit.HOURS, new LinkedBlockingDeque<Runnable>());
 
+    public EmpowerServiceFeature getEmpower(){
+        return this.empower;
+    }
+    public HashMap<String, TaskServer> getpStack(){
+        return this.pStack;
+    }
     /**
      * 生成同步服务器，指明服务器监听端口
      *
@@ -59,32 +65,28 @@ public class SyncWorksServer {
                 Socket socket = serverSocket.accept();
                 System.out.println("远程主机地址：" + socket.getRemoteSocketAddress());
 
-                BufferedReader reader = new BufferedReader(new InputStreamReader(
-                        socket.getInputStream(), Charset.forName("UTF-8")
-                ));
-                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
-                        socket.getOutputStream(),Charset.forName("UTF-8")
-                ));
+                InputStream input = socket.getInputStream();
+                OutputStream output = socket.getOutputStream();
 
 
 
 
                 RequestFeature request = null;
                 try {
-                    request = new Request(reader);
+                    request = new Request(input);
                 } catch (MsgException e) {
                     System.out.println("登录解析过程异常+++++++++++");
                     System.out.println(e.type() + "<" + e.getDetail() + ">.");
 
                     try {
                         ReplyFeature reply = new Reply("NO_TOKEN",false);
-                        reply.supply(e.type() + "<" + e.getDetail() + ">.").postReplyToClient(writer);
+                        reply.supply(e.type() + "<" + e.getDetail() + ">.").postReply(output);
                     } catch (MsgException e1) {
                         e1.printStackTrace();
                     }
 
-                    writer.close();
-                    reader.close();
+                    output.close();
+                    input.close();
                     e.printStackTrace();
                     continue;
                 }
@@ -103,22 +105,21 @@ public class SyncWorksServer {
                     else
                         reply = new Reply(newToken, true).supply("Welcome");
 
-                    reply.postReplyToClient(writer);
+                    reply.postReply(output);
                 } catch (MsgException e) {
                     System.out.println("登录回复过程异常++++++++++++++");
                     System.out.println(e.type() + "<" + e.getDetail() + ">.");
                     e.printStackTrace();
 
-                    writer.close();
-                    reader.close();
+                    output.close();
+                    input.close();
                     continue;
                 }
 
 
 
 
-                TaskGroove unit = new TaskGroove(this.pStack,
-                        this.empower, newToken, reader, writer);
+                TaskGroove unit = new TaskGroove(this, newToken, input, output);
                 this.tPool.execute(unit);
 
             } catch (IOException e) {

@@ -8,7 +8,7 @@ import softart.EmpowerServiceFeature;
 import softart.MsgException;
 import softart.task.TaskRequest;
 
-import java.io.BufferedReader;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class TalkRequest extends TaskRequest {
@@ -39,11 +39,11 @@ public class TalkRequest extends TaskRequest {
     /**
      * 载入Socket中的内容，根据提交信息生成请求，用于服务器端解析
      *
-     * @param reader socket端口
+     * @param input socket端口
      * @throws MsgException 异常
      */
-    public TalkRequest(BufferedReader reader) throws MsgException {
-        super(reader);
+    public TalkRequest(InputStream input) throws MsgException {
+        super(input);
         this.post2.clear();
 
 

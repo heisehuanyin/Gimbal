@@ -126,10 +126,13 @@ public class Reply implements ReplyFeature {
     /**
      * 简便的答复
      *
-     * @param writer 输出端口
+     * @param output 输出端口
      */
     @Override
-    public void postReplyToClient(BufferedWriter writer) throws MsgException {
+    public void postReply(OutputStream output) throws MsgException {
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
+                output, Charset.forName("UTF-8")
+        ));
 
         try {
             writer.write(this.toString());
