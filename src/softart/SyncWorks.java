@@ -1,11 +1,11 @@
 package softart;
 
+import softart.task.TaskRequest;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.*;
-import java.nio.charset.Charset;
 import java.util.Scanner;
 
 
@@ -27,21 +27,28 @@ public class SyncWorks {
         }
     }
 
-    public void doWork(){
+    public void doWork() {
+        BufferedWriter writer = null ;
         try {
-            Scanner in = new Scanner(System.in);
-            OutputStream out = socket.getOutputStream();
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out, Charset.forName("UTF-8")));
-
-            while (in.hasNext()){
-                String line = in.nextLine();
-                writer.write(line+"\n");
-                writer.flush();
-                System.out.println(line);
-            }
+            writer = new BufferedWriter(new OutputStreamWriter(
+                    socket.getOutputStream(),"UTF-8"
+            ));
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        try {
+            RequestFeature request = new Request("token","pwd");
+            request.postRequestToServer(writer);
+
+            TaskRequest req = new TaskRequest("uuid","token",
+                    EmpowerService.Privileges.TalkService.toString());
+            req.postRequestToServer(writer);
+        } catch (MsgException e) {
+            e.printStackTrace();
+        }
+
+        (new Scanner(System.in)).nextLine();
 
     }
 

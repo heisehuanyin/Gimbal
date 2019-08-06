@@ -11,7 +11,6 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
-import java.net.Socket;
 import java.nio.charset.Charset;
 
 public class Reply implements ReplyFeature {
@@ -28,6 +27,7 @@ public class Reply implements ReplyFeature {
         try {
             builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
         } catch (ParserConfigurationException e) {
+            e.printStackTrace();
             MsgException ex = new MsgException("回复过程异常");
             ex.setDetail("无法建立DocumentBuilder实例");
             throw ex;
@@ -124,29 +124,21 @@ public class Reply implements ReplyFeature {
     }
 
     /**
-     * 简便的答复socket目标
+     * 简便的答复
      *
-     * @param socket socket端口
+     * @param writer 输出端口
      */
     @Override
-    public void replyToSocket(Socket socket) throws MsgException {
-        OutputStream out = null;
-        try {
-            out = socket.getOutputStream();
-        } catch (IOException e) {
-            MsgException ex = new MsgException("回复过程异常");
-            ex.setDetail("无法通过Socket建立OutputStream.");
-            throw ex;
-        }
-        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out, Charset.forName("UTF-8")));
+    public void postReplyToClient(BufferedWriter writer) throws MsgException {
+
         try {
             writer.write(this.toString());
             writer.newLine();
             writer.write("MSG_SPLIT");
             writer.newLine();
             writer.flush();
-            writer.close();
         } catch (IOException e) {
+            e.printStackTrace();
             MsgException ex = new MsgException("回复过程异常");
             ex.setDetail("回复内容写入Socket的过程异常");
             throw ex;

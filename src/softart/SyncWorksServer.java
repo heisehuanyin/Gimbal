@@ -3,12 +3,12 @@ package softart;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import com.softart.task.*;
 import softart.task.TaskGroove;
 import softart.task.TaskServer;
 import softart.task.talk.TalkServer;
@@ -59,23 +59,33 @@ public class SyncWorksServer {
                 Socket socket = serverSocket.accept();
                 System.out.println("远程主机地址：" + socket.getRemoteSocketAddress());
 
+                BufferedReader reader = new BufferedReader(new InputStreamReader(
+                        socket.getInputStream(), Charset.forName("UTF-8")
+                ));
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
+                        socket.getOutputStream(),Charset.forName("UTF-8")
+                ));
+
+
+
+
                 RequestFeature request = null;
                 try {
-                    request = new Request(socket);
+                    request = new Request(reader);
                 } catch (MsgException e) {
                     System.out.println("登录解析过程异常+++++++++++");
                     System.out.println(e.type() + "<" + e.getDetail() + ">.");
 
                     try {
                         ReplyFeature reply = new Reply("NO_TOKEN",false);
-                        reply.supply(e.type() + "<" + e.getDetail() + ">.").replyToSocket(socket);
+                        reply.supply(e.type() + "<" + e.getDetail() + ">.").postReplyToClient(writer);
                     } catch (MsgException e1) {
                         e1.printStackTrace();
                     }
 
-                    socket.close();
+                    writer.close();
+                    reader.close();
                     e.printStackTrace();
-
                     continue;
                 }
 
@@ -93,20 +103,22 @@ public class SyncWorksServer {
                     else
                         reply = new Reply(newToken, true).supply("Welcome");
 
-                    reply.replyToSocket(socket);
+                    reply.postReplyToClient(writer);
                 } catch (MsgException e) {
                     System.out.println("登录回复过程异常++++++++++++++");
                     System.out.println(e.type() + "<" + e.getDetail() + ">.");
                     e.printStackTrace();
-                    socket.close();
 
+                    writer.close();
+                    reader.close();
                     continue;
                 }
 
 
 
 
-                TaskGroove unit = new TaskGroove(this.pStack, this.empower, newToken, socket);
+                TaskGroove unit = new TaskGroove(this.pStack,
+                        this.empower, newToken, reader, writer);
                 this.tPool.execute(unit);
 
             } catch (IOException e) {

@@ -1,6 +1,6 @@
 package softart;
 
-import java.net.Socket;
+import java.io.BufferedWriter;
 
 public interface ReplyFeature {
     /**
@@ -36,7 +36,7 @@ public interface ReplyFeature {
 
     /**
      * 简便的答复socket目标
-     * @param socket socket端口
+     * @param writer socket端口
      */
-    void replyToSocket(Socket socket) throws MsgException;
+    void postReplyToClient(BufferedWriter writer) throws MsgException;
 }

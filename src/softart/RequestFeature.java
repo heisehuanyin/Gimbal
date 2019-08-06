@@ -2,7 +2,7 @@ package softart;
 
 import org.w3c.dom.Document;
 
-import java.net.Socket;
+import java.io.BufferedWriter;
 
 public interface RequestFeature {
     /**
@@ -31,7 +31,7 @@ public interface RequestFeature {
 
     /**
      * 向socket端口发送request
-     * @param socket 端口
+     * @param writer 端口
      */
-    void postRequestToSocket(Socket socket) throws MsgException;
+    void postRequestToServer(BufferedWriter writer) throws MsgException;
 }

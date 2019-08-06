@@ -7,9 +7,8 @@ import org.w3c.dom.NodeList;
 import softart.EmpowerServiceFeature;
 import softart.MsgException;
 import softart.task.TaskRequest;
-import softart.task.TaskRequestFeature;
 
-import java.net.Socket;
+import java.io.BufferedReader;
 import java.util.ArrayList;
 
 public class TalkRequest extends TaskRequest {
@@ -40,12 +39,13 @@ public class TalkRequest extends TaskRequest {
     /**
      * 载入Socket中的内容，根据提交信息生成请求，用于服务器端解析
      *
-     * @param socket socket端口
+     * @param reader socket端口
      * @throws MsgException 异常
      */
-    public TalkRequest(Socket socket) throws MsgException {
-        super(socket);
+    public TalkRequest(BufferedReader reader) throws MsgException {
+        super(reader);
         this.post2.clear();
+
 
 
         NodeList nodeList = getDoc().getElementsByTagName("usr-list");

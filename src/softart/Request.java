@@ -13,7 +13,6 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
-import java.net.Socket;
 import java.nio.charset.Charset;
 
 public class Request implements RequestFeature {
@@ -33,6 +32,7 @@ public class Request implements RequestFeature {
         try {
             builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
         } catch (ParserConfigurationException e) {
+            e.printStackTrace();
             MsgException one = new MsgException("请求建立过程异常");
             one.setDetail("无法建立新请求");
             throw one;
@@ -53,48 +53,36 @@ public class Request implements RequestFeature {
 
         Element keynode = doc.createElement("pwd-token");
         keynode.setTextContent(this.pwd_token);
-        root.appendChild(usrid);
+        root.appendChild(keynode);
     }
 
 
     /**
      * 载入Socket中的内容，根据提交信息生成请求，用于服务器端解析
-     * @param socket socket端口
+     * @param readbuff socket端口
      * @throws MsgException 异常
      */
-    public Request(Socket socket) throws MsgException {
-        BufferedReader reader = null;
-        try {
-            InputStream in = socket.getInputStream();
-            reader = new BufferedReader(new InputStreamReader(in, Charset.forName("UTF-8")));
-
-        } catch (IOException e) {
-            MsgException one = new MsgException("通道建立过程异常");
-            one.setDetail("无法从Socket中获取InputStream.");
-            throw one;
-        }
-
-
+    public Request(BufferedReader readbuff) throws MsgException {
 
         String content = "", temp = "";
         try {
             while (!temp.equals("MSG_SPLIT")) {
                 content += temp;
-                temp = reader.readLine();
+                temp = readbuff.readLine();
             }
         } catch (IOException e) {
+            e.printStackTrace();
             MsgException one = new MsgException("请求获取过程异常");
             one.setDetail("读取提交的请求数据过程中出现io错误");
             throw one;
         }
 
 
-
-
         DocumentBuilder builder = null;
         try {
             builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
         } catch (ParserConfigurationException e) {
+            e.printStackTrace();
             MsgException one = new MsgException("请求解析过程异常");
             one.setDetail("无法建立解析请求用DocumentBuilder");
             throw one;
@@ -107,10 +95,12 @@ public class Request implements RequestFeature {
         try {
             doc = builder.parse(new ByteArrayInputStream(content.getBytes("UTF-8")));
         } catch (SAXException e) {
+            e.printStackTrace();
             MsgException one = new MsgException("请求解析过程异常");
             one.setDetail("请求格式错误或其他");
             throw one;
         } catch (IOException e) {
+            e.printStackTrace();
             MsgException one = new MsgException("请求解析过程异常");
             one.setDetail("接收到的请求编码错误或其他");
             throw one;
@@ -134,6 +124,7 @@ public class Request implements RequestFeature {
             throw one;
         }
         this.pwd_token=nodes.item(0).getTextContent();
+
     }
 
     @Override
@@ -160,6 +151,7 @@ public class Request implements RequestFeature {
             t.setOutputProperty(OutputKeys.METHOD, "xml");
             t.transform(new DOMSource(doc.getDocumentElement()), strResult);
         } catch (Exception e) {
+            e.printStackTrace();
             System.err.println("XML.toString(Document): " + e);
         }
         result = strResult.getWriter().toString();
@@ -184,27 +176,19 @@ public class Request implements RequestFeature {
     /**
      * 向socket端口发送request
      *
-     * @param socket 端口
+     * @param writer 端口
      */
     @Override
-    public void postRequestToSocket(Socket socket) throws MsgException {
-        OutputStream out = null;
-        try {
-            out = socket.getOutputStream();
-        } catch (IOException e) {
-            MsgException ex = new MsgException("回复过程异常");
-            ex.setDetail("无法通过Socket建立OutputStream.");
-            throw ex;
-        }
-        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out, Charset.forName("UTF-8")));
+    public void postRequestToServer(BufferedWriter writer) throws MsgException {
+
         try {
             writer.write(this.toString());
             writer.newLine();
             writer.write("MSG_SPLIT");
             writer.newLine();
             writer.flush();
-            writer.close();
         } catch (IOException e) {
+            e.printStackTrace();
             MsgException ex = new MsgException("回复过程异常");
             ex.setDetail("回复内容写入Socket的过程异常");
             throw ex;

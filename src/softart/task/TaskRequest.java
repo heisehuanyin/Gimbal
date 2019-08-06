@@ -7,9 +7,11 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.BufferedReader;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 public class TaskRequest extends Request implements TaskRequestFeature {
     private String taskMask = "";
@@ -28,11 +30,11 @@ public class TaskRequest extends Request implements TaskRequestFeature {
     /**
      * 载入Socket中的内容，根据提交信息生成请求，用于服务器端解析
      *
-     * @param socket socket端口
+     * @param reader 读取端口
      * @throws MsgException 异常
      */
-    public TaskRequest(Socket socket) throws MsgException {
-        super(socket);
+    public TaskRequest(BufferedReader reader) throws MsgException {
+        super(reader);
 
         Document doc = this.getDoc();
         NodeList taskMasks = doc.getElementsByTagName("task-mask");
@@ -114,8 +116,6 @@ public class TaskRequest extends Request implements TaskRequestFeature {
             ins.setAttribute("value", item);
             one.appendChild(ins);
         }
-
-        return;
     }
 
     /**
@@ -126,12 +126,48 @@ public class TaskRequest extends Request implements TaskRequestFeature {
      */
     @Override
     public ArrayList<String> getList(String key) {
-        return null;
+        ArrayList<String> list = new ArrayList<>();
+        Element root = getDoc().getDocumentElement();
+        NodeList llist=root.getElementsByTagName("list");
+
+        for(int i=0; i<llist.getLength(); ++i){
+            Element one = (Element) llist.item(i);
+            if (one.getAttribute("key").equals(key)){
+                NodeList items = one.getElementsByTagName("item");
+                for (int c=0; c<items.getLength(); ++c){
+                    Element item_elm = (Element) items.item(c);
+                    list.add(item_elm.getAttribute("value"));
+                }
+                break;
+            }
+        }
+
+        return list;
     }
 
     @Override
     public void setDict(String name, HashMap<String, String> map) {
+        Element root = getDoc().getDocumentElement();
+        NodeList dictlist = root.getElementsByTagName("dict");
 
+        for (int i=0; i<dictlist.getLength(); ++i){
+            Element one = (Element) dictlist.item(i);
+            if (one.getAttribute("key").equals(name)){
+                root.removeChild(one);
+            }
+        }
+
+        Element one = getDoc().createElement("dict");
+        one.setAttribute("key", name);
+        root.appendChild(one);
+
+        Set<String> keys = map.keySet();
+        for (String item : keys){
+            Element ins = getDoc().createElement("pair");
+            ins.setAttribute("key", item);
+            ins.setAttribute("value", map.get(item));
+            one.appendChild(ins);
+        }
     }
 
     /**
@@ -142,7 +178,63 @@ public class TaskRequest extends Request implements TaskRequestFeature {
      */
     @Override
     public HashMap<String, String> getDict(String name) {
-        return null;
+        HashMap<String, String> map = new HashMap<>();
+        Element root = getDoc().getDocumentElement();
+        NodeList dictlist = root.getElementsByTagName("dict");
+
+        for (int i=0; i<dictlist.getLength(); ++i){
+            Element one = (Element) dictlist.item(i);
+            if (one.getAttribute("key").equals(name)){
+                NodeList pairs = one.getElementsByTagName("pair");
+                for (int jjj=0; jjj<pairs.getLength(); ++jjj){
+                    Element pair = (Element) pairs.item(jjj);
+                    map.put(pair.getAttribute("key"),
+                            pair.getAttribute("value"));
+                }
+            }
+        }
+
+        return map;
+    }
+
+    public static void main(String[] args){
+        try {
+            TaskRequest o = new TaskRequest("uuid","token", "mask");
+
+            System.out.println(o.taskMark());
+            System.out.println(o.toString());
+
+            o.setValue("a-key","a-value");
+            System.out.println("======");
+            System.out.println(o.toString());
+
+            o.setValue("a-key","b-value");
+            System.out.println("======");
+            System.out.println(o.toString());
+
+            o.setValue("some-key","some-value");
+            System.out.println("======");
+            System.out.println(o.toString());
+
+            ArrayList<String> lista = new ArrayList<>();
+            lista.add("instance_a");
+            lista.add("instance_b");
+            o.setList("list_example", lista);
+            System.out.println("===========");
+            System.out.println(o.toString());
+
+            HashMap<String,String> map = new HashMap<>();
+            map.put("hash1","hash2");
+            map.put("map1","map2");
+            o.setDict("adict",map);
+            System.out.println("===========");
+            System.out.println(o.toString());
+
+        } catch (MsgException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 }

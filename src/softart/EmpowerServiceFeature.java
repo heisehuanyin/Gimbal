@@ -5,11 +5,7 @@ public interface EmpowerServiceFeature {
         FilesUpload,
         FilesDownload,
         CreateAccount,
-        TalkService;
-
-        public String toString(){
-            return getClass().getSimpleName();
-        }
+        TalkService
     }
 
     /**
