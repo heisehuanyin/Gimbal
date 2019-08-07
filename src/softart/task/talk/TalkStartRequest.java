@@ -4,18 +4,18 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import softart.EmpowerServiceFeature;
+import softart.AuthServiceFeature;
 import softart.MsgException;
-import softart.task.TaskRequest;
+import softart.task.TaskStartRequest;
 
 import java.io.InputStream;
 import java.util.ArrayList;
 
-public class TalkRequest extends TaskRequest {
+public class TalkStartRequest extends TaskStartRequest {
     private ArrayList<String> post2 = new ArrayList<>();
 
-    public TalkRequest(String uuid, String token) throws MsgException {
-        super(uuid,token, EmpowerServiceFeature.Privileges.TalkService.toString());
+    public TalkStartRequest(String uuid, String token) throws MsgException {
+        super(uuid,token, TalkServer.class.getSimpleName());
 
         Document doc = this.getDoc();
         Element usrList = doc.createElement("usr-list");
@@ -42,7 +42,7 @@ public class TalkRequest extends TaskRequest {
      * @param input socket端口
      * @throws MsgException 异常
      */
-    public TalkRequest(InputStream input) throws MsgException {
+    public TalkStartRequest(InputStream input) throws MsgException {
         super(input);
         this.post2.clear();
 

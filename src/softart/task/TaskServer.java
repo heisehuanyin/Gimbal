@@ -1,5 +1,7 @@
 package softart.task;
 
+import softart.AuthServiceFeature;
+
 import java.io.InputStream;
 import java.io.OutputStream;
 
@@ -7,6 +9,7 @@ public interface TaskServer {
 
     /**
      * 本处理任务针对的任务类型
+     * @return 功能名称、任务类型
      */
     String taskMask();
 
@@ -19,7 +22,7 @@ public interface TaskServer {
      * @param output
      * @return 返回一个可运行实体
      */
-    TaskServer newEntities(TaskRequestFeature request, InputStream input, OutputStream output);
+    TaskServer newEntities(TaskStartRequestFeature request, InputStream input, OutputStream output);
 
 
     /**

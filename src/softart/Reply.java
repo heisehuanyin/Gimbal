@@ -14,15 +14,9 @@ import java.io.*;
 import java.nio.charset.Charset;
 
 public class Reply implements ReplyFeature {
-    private boolean isSuccess = false;
-    private String token = "";
     private Document doc = null;
-    private String supplyMessage = "NO_SUPPLY";
 
     public Reply(String token, boolean result) throws MsgException {
-        this.isSuccess = result;
-        this.token = token;
-
         DocumentBuilder builder = null;
         try {
             builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
@@ -40,16 +34,16 @@ public class Reply implements ReplyFeature {
         doc.appendChild(root);
 
         Element tokenEntry = doc.createElement("token");
-        tokenEntry.setTextContent(this.token);
+        tokenEntry.setTextContent(token);
         root.appendChild(tokenEntry);
 
         Element resultEntry = doc.createElement("result");
-        resultEntry.setTextContent(isSuccess?"TRUE":"FALSE");
+        resultEntry.setTextContent(result?"TRUE":"FALSE");
         root.appendChild(resultEntry);
 
 
         Element supply = doc.createElement("server-said");
-        supply.setTextContent(this.supplyMessage);
+        supply.setTextContent("NO_MESSAGE.");
         root.appendChild(supply);
     }
 
@@ -60,7 +54,11 @@ public class Reply implements ReplyFeature {
      */
     @Override
     public boolean result() {
-        return isSuccess;
+        Element result = (Element) doc.
+                getElementsByTagName("result").
+                item(0);
+
+        return result.getTextContent().equals("TRUE");
     }
 
     /**
@@ -71,9 +69,9 @@ public class Reply implements ReplyFeature {
      */
     @Override
     public ReplyFeature supply(String shortmsg) {
-        this.supplyMessage = shortmsg;
         this.doc.getElementsByTagName("server-said")
                 .item(0).setTextContent(shortmsg);
+
         return this;
     }
 
@@ -84,7 +82,11 @@ public class Reply implements ReplyFeature {
      */
     @Override
     public String suppliedMessage() {
-        return this.supplyMessage;
+        Element msgNode = (Element) this.doc.
+                getElementsByTagName("server-said").
+                item(0);
+
+        return msgNode.getTextContent();
     }
 
     /**
@@ -94,7 +96,11 @@ public class Reply implements ReplyFeature {
      */
     @Override
     public String token() {
-        return this.token;
+        Element tokenNode = (Element) this.doc.
+                getElementsByTagName("token").
+                item(0);
+
+        return tokenNode.getTextContent();
     }
 
     @Override

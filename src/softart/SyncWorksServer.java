@@ -16,12 +16,12 @@ import java.util.concurrent.TimeUnit;
 
 public class SyncWorksServer {
     private ServerSocket serverSocket = null;
-    private EmpowerServiceFeature empower = null;
+    private AuthServiceFeature empower = null;
     private HashMap<String, TaskServer> pStack = new HashMap<>();
     private ThreadPoolExecutor tPool = new ThreadPoolExecutor(4, 500,
             1, TimeUnit.HOURS, new LinkedBlockingDeque<Runnable>());
 
-    public EmpowerServiceFeature getEmpower(){
+    public AuthServiceFeature getAuthSrv(){
         return this.empower;
     }
     public HashMap<String, TaskServer> getpStack(){
@@ -32,7 +32,7 @@ public class SyncWorksServer {
      *
      * @param port 监听端口号
      */
-    public SyncWorksServer(int port, EmpowerServiceFeature empowerService) {
+    public SyncWorksServer(int port, AuthServiceFeature empowerService) {
         this.empower = empowerService;
 
         try {
@@ -132,7 +132,7 @@ public class SyncWorksServer {
 
 
     public static void main(String[] args) {
-        EmpowerServiceFeature service = new EmpowerService();
+        AuthServiceFeature service = new AuthService();
         SyncWorksServer one = new SyncWorksServer(Integer.parseInt(args[0]), service);
 
         one.registerProcess(new TalkServer());

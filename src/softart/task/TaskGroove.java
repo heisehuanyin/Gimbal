@@ -23,9 +23,9 @@ public class TaskGroove implements Runnable {
 
         while (true) {
 
-            TaskRequestFeature request = null;
+            TaskStartRequestFeature request = null;
             try {
-                request = new TaskRequest(inputStream);
+                request = new TaskStartRequest(inputStream);
             } catch (MsgException e) {
                 System.out.println("任务分析过程异常+++++++++++");
                 System.out.println(e.type() + "<" + e.getDetail() + ">.");
@@ -35,7 +35,7 @@ public class TaskGroove implements Runnable {
                     ReplyFeature reply = new Reply(token, false);
                     reply.supply(e.type() + "<" + e.getDetail() + ">.").postReply(outputStream);
                 } catch (MsgException e1) {
-                    System.out.println(e1.type()+"<"+e1.getDetail()+">.");
+                    System.out.println(e1.type() + "<" + e1.getDetail() + ">.");
                     e1.printStackTrace();
                 }
 
@@ -43,46 +43,32 @@ public class TaskGroove implements Runnable {
             }
 
 
+            String type = request.taskMark();
 
-
-
-            String temp = request.taskMark();
-            EmpowerServiceFeature.Privileges type;
             try {
-                type = EmpowerServiceFeature.Privileges.valueOf(temp);
-            } catch (Exception e) {
-                System.out.println("权限鉴别过程异常<未知权限:" + temp + ">.");
-                e.printStackTrace();
 
-                try {
-                    ReplyFeature reply = new Reply(token, false);
-                    reply.supply("权限鉴别过程异常<未知权限:" + temp + ">.").postReply(outputStream);
-                } catch (MsgException e1) {
-                    System.out.println(e1.type()+"<"+e1.getDetail()+">.");
-                    e1.printStackTrace();
-                    break;
+                ReplyFeature reply = null;
+                if (!this.server.getpStack().containsKey(type)) {
+                    reply = new Reply(token, false).supply("未知权限<"+type+">.");
+                    reply.postReply(outputStream);
+                    continue;
                 }
 
-                continue;
-            }
 
-            try {
-                ReplyFeature reply = null;
-                if (!server.getEmpower().privilegeCheck(request.getUuidStr(), request.getKeyString(), type)) {
-                    reply = new Reply(token, false).supply("权限不足");
+                if (!server.getAuthSrv().authCheck(request.getUuidStr(), request.getKeyString(), type)) {
+                    reply = new Reply(token, false).supply("权限不足<"+type+">.");
                     reply.postReply(outputStream);
                     continue;
                 } else {
                     reply = new Reply(token, true).supply("Please Continue");
                     reply.postReply(outputStream);
                 }
+
             } catch (MsgException e) {
-                System.out.println(e.type()+"<"+e.getDetail()+">.");
+                System.out.println(e.type() + "<" + e.getDetail() + ">.");
                 e.printStackTrace();
                 break;
             }
-
-
 
 
             TaskServer processor = server.getpStack().get(request.taskMark())

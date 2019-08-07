@@ -5,7 +5,7 @@ import softart.RequestFeature;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public interface TaskRequestFeature extends RequestFeature {
+public interface TaskStartRequestFeature extends RequestFeature {
 
     /**
      * 本处理任务针对的任务类型

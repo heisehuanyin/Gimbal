@@ -17,8 +17,6 @@ import java.nio.charset.Charset;
 
 public class Request implements RequestFeature {
     protected Document doc = null;
-    private String uuidStr = "";
-    private String pwd_token = "";
 
     /**
      * 新建一个任务请求，一般用于客户端对服务器端实用
@@ -26,8 +24,6 @@ public class Request implements RequestFeature {
      * @param _pwd_token 密码或token
      */
     public Request(String uuid, String _pwd_token) throws MsgException {
-        uuidStr = uuid;
-        pwd_token = _pwd_token;
         DocumentBuilder builder = null;
         try {
             builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
@@ -48,11 +44,11 @@ public class Request implements RequestFeature {
         doc.appendChild(root);
 
         Element usrid = doc.createElement("uuid");
-        usrid.setTextContent(uuidStr);
+        usrid.setTextContent(uuid);
         root.appendChild(usrid);
 
         Element keynode = doc.createElement("pwd-token");
-        keynode.setTextContent(this.pwd_token);
+        keynode.setTextContent(_pwd_token);
         root.appendChild(keynode);
     }
 
@@ -118,7 +114,6 @@ public class Request implements RequestFeature {
             one.setDetail("请求不存在uuid或多个uuid参数");
             throw one;
         }
-        this.uuidStr = nodes.item(0).getTextContent();
 
         nodes = rootelm.getElementsByTagName("pwd-token");
         if (nodes.getLength()!=1){
@@ -126,18 +121,24 @@ public class Request implements RequestFeature {
             one.setDetail("请求不存在pwd-token或多个pwd-token参数");
             throw one;
         }
-        this.pwd_token=nodes.item(0).getTextContent();
-
     }
 
     @Override
     public String getUuidStr(){
-        return this.uuidStr;
+        Element uuid = (Element) doc.
+                getElementsByTagName("uuid").
+                item(0);
+
+        return uuid.getTextContent();
     }
 
     @Override
     public String getKeyString(){
-        return this.pwd_token;
+        Element keyString = (Element) doc.
+                getElementsByTagName("pwd-token").
+                item(0);
+
+        return keyString.getTextContent();
     }
 
     @Override

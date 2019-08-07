@@ -1,7 +1,6 @@
 package softart.task;
 
-import softart.Request;
-import softart.MsgException;
+import softart.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -11,16 +10,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
-public class TaskRequest extends Request implements TaskRequestFeature {
-    private String taskMask = "";
+public class TaskStartRequest extends Request implements TaskStartRequestFeature {
 
-    public TaskRequest(String uuid, String token, String taskMask) throws MsgException {
+    public TaskStartRequest(String uuid, String token, String privilege) throws MsgException {
         super(uuid, token);
-        this.taskMask = taskMask;
 
         Document doc = this.getDoc();
         Element taskmask = doc.createElement("task-mask");
-        taskmask.setTextContent(taskMask);
+        taskmask.setTextContent(privilege.toString());
 
         doc.getDocumentElement().appendChild(taskmask);
     }
@@ -31,7 +28,7 @@ public class TaskRequest extends Request implements TaskRequestFeature {
      * @param input 读取端口
      * @throws MsgException 异常
      */
-    public TaskRequest(InputStream input) throws MsgException {
+    public TaskStartRequest(InputStream input) throws MsgException {
         super(input);
 
         Document doc = this.getDoc();
@@ -41,8 +38,6 @@ public class TaskRequest extends Request implements TaskRequestFeature {
             ex.setDetail("不存在task-mask节点或存在多个task-mask节点");
             throw ex;
         }
-
-        this.taskMask = taskMasks.item(0).getTextContent();
     }
 
     /**
@@ -50,7 +45,11 @@ public class TaskRequest extends Request implements TaskRequestFeature {
      */
     @Override
     public String taskMark() {
-        return this.taskMask;
+        Element task = (Element) doc.
+                getElementsByTagName("task-mask").
+                item(0);
+
+        return task.getTextContent();
     }
 
 
@@ -126,10 +125,10 @@ public class TaskRequest extends Request implements TaskRequestFeature {
     public ArrayList<String> getList(String key) {
         ArrayList<String> list = new ArrayList<>();
         Element root = getDoc().getDocumentElement();
-        NodeList llist=root.getElementsByTagName("list");
+        NodeList listNodes = root.getElementsByTagName("list");
 
-        for(int i=0; i<llist.getLength(); ++i){
-            Element one = (Element) llist.item(i);
+        for(int i=0; i<listNodes.getLength(); ++i){
+            Element one = (Element) listNodes.item(i);
             if (one.getAttribute("key").equals(key)){
                 NodeList items = one.getElementsByTagName("item");
                 for (int c=0; c<items.getLength(); ++c){
@@ -197,7 +196,7 @@ public class TaskRequest extends Request implements TaskRequestFeature {
 
     public static void main(String[] args){
         try {
-            TaskRequest o = new TaskRequest("uuid","token", "mask");
+            TaskStartRequest o = new TaskStartRequest("uuid","token", "ExeCommand");
 
             System.out.println(o.taskMark());
             System.out.println(o.toString());
