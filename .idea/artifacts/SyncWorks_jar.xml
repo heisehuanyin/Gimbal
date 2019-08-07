@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SyncWorks:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SyncWorks_jar</output-path>
+    <root id="archive" name="SyncWorks.jar">
+      <element id="module-output" name="SyncWorks" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/mysql-connector-java-8.0.17.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
