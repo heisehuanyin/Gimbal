@@ -1,17 +1,18 @@
 package softart;
 
-import java.io.*;
+import softart.task.TaskGroove;
+import softart.task.TaskServer;
+import softart.task.talk.TalkServer;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-
-import softart.task.TaskGroove;
-import softart.task.TaskServer;
-import softart.task.talk.TalkServer;
 
 public class SyncWorksServer {
     private ServerSocket serverSocket = null;

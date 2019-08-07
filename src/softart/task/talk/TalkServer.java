@@ -6,17 +6,18 @@ import softart.task.TaskRequestFeature;
 
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.Socket;
 
 public class TalkServer implements TaskServer {
     private TaskRequestFeature request = null;
-    private Socket socket = null;
+    private InputStream inputStream = null;
+    private OutputStream outputStream = null;
 
     public TalkServer(){}
 
-    public TalkServer(TaskRequestFeature requestFeature, Socket socket){
+    public TalkServer(TaskRequestFeature requestFeature, InputStream input, OutputStream output){
         this.request = requestFeature;
-        this.socket = socket;
+        this.inputStream = input;
+        this.outputStream = output;
     }
 
     /**
@@ -37,9 +38,7 @@ public class TalkServer implements TaskServer {
      */
     @Override
     public TaskServer newEntities(TaskRequestFeature request, InputStream input, OutputStream output) {
-        TalkServer rtn = new TalkServer();
-
-
+        TalkServer rtn = new TalkServer(request, input, output);
         return rtn;
     }
 
