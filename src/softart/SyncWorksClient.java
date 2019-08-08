@@ -11,18 +11,17 @@ import java.nio.charset.Charset;
 import java.util.Scanner;
 
 
-public class SyncWorks {
+public class SyncWorksClient {
+    private Socket socket = null;
     private InputStream inputStream=null;
     private OutputStream outputStream=null;
     private final String _address;
-    private final int _port;
 
-    public SyncWorks(String addr, int port) {
+    public SyncWorksClient(String addr, int port) {
         _address = addr;
-        _port = port;
 
         try {
-            Socket socket = new Socket(_address, port);
+            socket = new Socket(_address, port);
             inputStream = socket.getInputStream();
             outputStream = socket.getOutputStream();
         } catch (IOException e) {
@@ -33,13 +32,14 @@ public class SyncWorks {
     }
 
     public void doWork() {
-        new ReceiveMsg(inputStream).start();
+        new MsgAcceptWorker(inputStream).start();
 
         try {
             RequestFeature login = new Request("uuid","pwd");
+            login.postRequest(outputStream);
             TaskStartRequest start = new TalkStartRequest("uuid","token");
+            start.postRequest(outputStream);
 
-            this.ConnectToServer(login, start);
             Scanner can = new Scanner(System.in);
 
             while (true){
@@ -57,22 +57,18 @@ public class SyncWorks {
         }
 
     }
-    public void ConnectToServer(RequestFeature loginReq, TaskStartRequestFeature startReq) throws MsgException {
-        loginReq.postRequest(this.outputStream);
-        startReq.postRequest(this.outputStream);
-    }
 
     public static void main(String[] args) {
 
-        SyncWorks one = new SyncWorks(args[0], Integer.parseInt(args[1]));
+        SyncWorksClient one = new SyncWorksClient(args[0], Integer.parseInt(args[1]));
         one.doWork();
     }
 }
 
-class ReceiveMsg extends Thread{
+class MsgAcceptWorker extends Thread{
     private InputStream inPort = null;
 
-    public ReceiveMsg(InputStream srvPort){
+    public MsgAcceptWorker(InputStream srvPort){
         this.inPort = srvPort;
     }
 
@@ -86,6 +82,9 @@ class ReceiveMsg extends Thread{
             try {
                 String msgitem = reader.readLine();
                 System.out.println(msgitem);
+
+                if (msgitem==null)
+                    break;
             } catch (IOException e) {
                 e.printStackTrace();
                 break;

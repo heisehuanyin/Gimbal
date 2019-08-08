@@ -21,12 +21,14 @@ public class SyncWorksServer {
     private ThreadPoolExecutor tPool = new ThreadPoolExecutor(4, 500,
             1, TimeUnit.HOURS, new LinkedBlockingDeque<Runnable>());
 
-    public AuthServiceFeature getAuthSrv(){
+    public AuthServiceFeature getAuthSrv() {
         return this.empower;
     }
-    public HashMap<String, TaskServer> getpStack(){
+
+    public HashMap<String, TaskServer> getpStack() {
         return this.pStack;
     }
+
     /**
      * 生成同步服务器，指明服务器监听端口
      *
@@ -70,8 +72,6 @@ public class SyncWorksServer {
                 OutputStream output = socket.getOutputStream();
 
 
-
-
                 RequestFeature request = null;
                 try {
                     request = new Request(input);
@@ -80,7 +80,7 @@ public class SyncWorksServer {
                     System.out.println(e.type() + "<" + e.getDetail() + ">.");
 
                     try {
-                        ReplyFeature reply = new Reply("NO_TOKEN",false);
+                        ReplyFeature reply = new Reply("NO_TOKEN", false);
                         reply.supply(e.type() + "<" + e.getDetail() + ">.").postReply(output);
                     } catch (MsgException e1) {
                         e1.printStackTrace();
@@ -91,8 +91,6 @@ public class SyncWorksServer {
                     e.printStackTrace();
                     continue;
                 }
-
-
 
 
                 String uuid = request.getUuidStr();
@@ -118,8 +116,6 @@ public class SyncWorksServer {
                 }
 
 
-
-
                 TaskGroove unit = new TaskGroove(this, newToken, input, output);
                 this.tPool.execute(unit);
 
@@ -132,6 +128,10 @@ public class SyncWorksServer {
 
 
     public static void main(String[] args) {
+        if (args.length < 1) {
+            System.out.println("未输入必要端口号参数");
+        }
+
         AuthServiceFeature service = new AuthService();
         SyncWorksServer one = new SyncWorksServer(Integer.parseInt(args[0]), service);
 

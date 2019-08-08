@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="SyncWorks:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="c0437020-b7ad-453a-a10a-a90b75675065" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/markdown-navigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/softart/task/talk/MsgPostRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/softart/basictype/SWPair.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/softart/EmpowerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/softart/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/softart/EmpowerServiceFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/softart/AuthServiceFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/softart/Reply.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/softart/Reply.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/softart/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/softart/Request.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/softart/SyncWorks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/softart/SyncWorks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/softart/SyncWorks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/softart/SyncWorksClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/softart/SyncWorksServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/softart/SyncWorksServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/softart/task/TaskGroove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/softart/task/TaskGroove.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/softart/task/TaskRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/softart/task/TaskStartRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/softart/task/TaskRequestFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/softart/task/TaskStartRequestFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/softart/task/TaskServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/softart/task/TaskServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/softart/task/talk/TalkRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/softart/task/talk/TalkStartRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/softart/task/talk/TalkServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/softart/task/talk/TalkServer.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -27,46 +23,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/softart/SyncWorks.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/softart/SyncWorksClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
+            <state relative-caret-position="365">
+              <caret line="45" column="45" selection-start-line="45" selection-start-column="45" selection-end-line="45" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3062#3063#0" expanded="true" />
-                <element signature="e#3098#3099#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/softart/task/talk/TalkServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1245">
-              <caret line="83" column="37" selection-start-line="83" selection-start-column="37" selection-end-line="83" selection-end-column="37" />
+            <state relative-caret-position="883">
+              <caret line="136" column="16" lean-forward="true" selection-start-line="136" selection-start-column="16" selection-end-line="136" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1157#1158#0" expanded="true" />
                 <element signature="e#1211#1212#0" expanded="true" />
-                <element signature="class#MsgRouterThread#0" />
-                <element signature="e#3010#3011#0" expanded="true" />
-                <element signature="e#3047#3048#0" expanded="true" />
-                <element signature="class#BlockList#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/softart/task/talk/MsgPostRequest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="43" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#678#679#0" expanded="true" />
-                <element signature="e#709#710#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -75,10 +52,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/softart/task/TaskGroove.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="86">
-              <caret line="21" column="23" lean-forward="true" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
+            <state relative-caret-position="91">
+              <caret line="70" column="36" selection-start-line="70" selection-start-column="36" selection-end-line="70" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#739#1320#0" />
+                <element signature="e#933#1115#0" />
+                <element signature="e#1140#1282#0" />
               </folding>
             </state>
           </provider>
@@ -100,6 +80,7 @@
       <find>catch</find>
       <find>socket</find>
       <find>close</find>
+      <find>Pair</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -108,8 +89,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/com/softart/tasks/LoginException.java" />
-        <option value="$PROJECT_DIR$/src/com/softart/WsException.java" />
         <option value="$PROJECT_DIR$/src/com/softart/Request.java" />
         <option value="$PROJECT_DIR$/src/com/softart/tasks/TaskRequest.java" />
         <option value="$PROJECT_DIR$/src/com/softart/tasks/GeneralRequest.java" />
@@ -149,16 +128,18 @@
         <option value="$PROJECT_DIR$/src/softart/task/TaskServer.java" />
         <option value="$PROJECT_DIR$/src/softart/task/talk/TalkRequest.java" />
         <option value="$PROJECT_DIR$/src/softart/task/talk/TalkStartRequest.java" />
-        <option value="$PROJECT_DIR$/src/softart/task/TaskGroove.java" />
         <option value="$PROJECT_DIR$/src/softart/task/exec/ExecStartRequest.java" />
         <option value="$PROJECT_DIR$/src/softart/task/exec/ExecUtility.java" />
-        <option value="$PROJECT_DIR$/src/softart/SyncWorksServer.java" />
         <option value="$PROJECT_DIR$/src/softart/Reply.java" />
         <option value="$PROJECT_DIR$/src/softart/Request.java" />
         <option value="$PROJECT_DIR$/src/softart/task/TaskStartRequest.java" />
         <option value="$PROJECT_DIR$/src/softart/task/talk/MsgPostRequest.java" />
-        <option value="$PROJECT_DIR$/src/softart/task/talk/TalkServer.java" />
+        <option value="$PROJECT_DIR$/src/softart/SyncWorksServer.java" />
         <option value="$PROJECT_DIR$/src/softart/SyncWorks.java" />
+        <option value="$PROJECT_DIR$/src/softart/SyncWorksClient.java" />
+        <option value="$PROJECT_DIR$/src/softart/task/TaskGroove.java" />
+        <option value="$PROJECT_DIR$/src/softart/basictype/Pair.java" />
+        <option value="$PROJECT_DIR$/src/softart/task/talk/TalkServer.java" />
       </list>
     </option>
   </component>
@@ -226,6 +207,19 @@
               <item name="SyncWorks" type="b2602c69:ProjectViewProjectNode" />
               <item name="SyncWorks" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="softart" type="462c0819:PsiDirectoryNode" />
+              <item name="SyncWorksClient.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
+            <path>
+              <item name="SyncWorks" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SyncWorks" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="basictype" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SyncWorks" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SyncWorks" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="task" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -233,6 +227,13 @@
               <item name="SyncWorks" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="talk" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SyncWorks" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SyncWorks" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="talk" type="462c0819:PsiDirectoryNode" />
+              <item name="TalkServer.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </path>
           </expand>
           <select />
@@ -242,7 +243,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1565186244152" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1565271904104" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -268,9 +269,9 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.SyncWorks">
-    <configuration name="SyncWorks" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="softart.SyncWorks" />
+  <component name="RunManager" selected="Application.SyncWorksClient">
+    <configuration name="SyncWorksClient" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="softart.SyncWorksClient" />
       <module name="SyncWorks" />
       <option name="PROGRAM_PARAMETERS" value="127.0.0.1 52525" />
       <extension name="coverage">
@@ -284,7 +285,7 @@
       </method>
     </configuration>
     <configuration name="SyncWorksServer" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.softart.SyncWorksServer" />
+      <option name="MAIN_CLASS_NAME" value="softart.SyncWorksServer" />
       <module name="SyncWorks" />
       <option name="PROGRAM_PARAMETERS" value="52525" />
       <extension name="coverage">
@@ -325,7 +326,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TalkStartRequest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="TalkStartRequest" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="softart.task.talk.TalkStartRequest" />
       <module name="SyncWorks" />
       <extension name="coverage">
@@ -339,15 +340,13 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.SyncWorks" />
-      <item itemvalue="Application.TalkStartRequest" />
       <item itemvalue="Application.SyncWorksServer" />
+      <item itemvalue="Application.SyncWorksClient" />
+      <item itemvalue="Application.TalkStartRequest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.SyncWorks" />
         <item itemvalue="Application.SyncWorksServer" />
-        <item itemvalue="Application.TalkStartRequest" />
         <item itemvalue="Application.SyncWorksServer" />
       </list>
     </recent_temporary>
@@ -369,16 +368,17 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="50" y="23" width="1390" height="877" extended-state="6" />
+    <frame x="50" y="23" width="1390" height="877" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5464968" visible="true" weight="0.20994066" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5464968" visible="true" weight="0.21587537" />
       <window_info id="Image Layers" order="1" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Capture Tool" order="4" />
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3299363" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.3299363" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.28535032" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -526,62 +526,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/softart/task/exec/ExecStartRequest.java">
+    <entry file="file://$PROJECT_DIR$/src/softart/task/exec/ExecStartRequest.java" />
+    <entry file="file://$PROJECT_DIR$/src/softart/task/exec/ExecUtility.java" />
+    <entry file="file://$PROJECT_DIR$/src/softart/task/TaskStartRequest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/softart/task/exec/ExecUtility.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="42" column="52" lean-forward="true" selection-start-line="42" selection-start-column="52" selection-end-line="42" selection-end-column="52" />
+        <state relative-caret-position="205">
+          <caret line="127" column="29" selection-start-line="127" selection-start-column="29" selection-end-line="127" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/softart/SyncWorksServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="603">
-          <caret line="119" lean-forward="true" selection-start-line="119" selection-end-line="119" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/softart/task/TaskGroove.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="86">
-          <caret line="21" column="23" lean-forward="true" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/softart/Reply.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="694">
-          <caret line="102" column="42" selection-start-line="102" selection-start-column="42" selection-end-line="102" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;method#result#0;class#Reply#0" />
-            <element signature="method#result#0;class#Reply#0" />
-            <element signature="docComment;method#supply#0;class#Reply#0" />
-            <element signature="method#supply#0;class#Reply#0" />
-            <element signature="docComment;method#suppliedMessage#0;class#Reply#0" />
-            <element signature="method#suppliedMessage#0;class#Reply#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/softart/Request.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-143">
+        <state relative-caret-position="1702">
           <caret line="122" column="9" selection-start-line="122" selection-start-column="9" selection-end-line="122" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -592,12 +551,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/softart/task/TaskStartRequest.java">
+    <entry file="file://$PROJECT_DIR$/src/softart/Reply.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="127" column="29" selection-start-line="127" selection-start-column="29" selection-end-line="127" selection-end-column="29" />
+        <state relative-caret-position="128">
+          <caret line="13" column="27" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="docComment;method#result#0;class#Reply#0" />
+            <element signature="method#result#0;class#Reply#0" />
+            <element signature="docComment;method#supply#0;class#Reply#0" />
+            <element signature="method#supply#0;class#Reply#0" />
+            <element signature="docComment;method#suppliedMessage#0;class#Reply#0" />
+            <element signature="method#suppliedMessage#0;class#Reply#0" />
           </folding>
         </state>
       </provider>
@@ -609,34 +573,73 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#678#679#0" expanded="true" />
-            <element signature="e#709#710#0" expanded="true" />
+            <element signature="e#728#729#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/softart/SyncWorksServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="131" column="42" selection-start-line="131" selection-start-column="42" selection-end-line="131" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1608#3903#1" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/softart/SyncWorksClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="45" column="45" selection-start-line="45" selection-start-column="45" selection-end-line="45" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/softart/basictype/SWPair.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="26" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
+          <folding>
+            <element signature="e#227#228#0" expanded="true" />
+            <element signature="e#257#258#0" expanded="true" />
+            <element signature="e#288#289#0" expanded="true" />
+            <element signature="e#320#321#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/softart/task/TaskGroove.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="70" column="36" selection-start-line="70" selection-start-column="36" selection-end-line="70" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#739#1320#0" />
+            <element signature="e#933#1115#0" />
+            <element signature="e#1140#1282#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-9.0.4.jdk/Contents/Home/lib/src.zip!/javafx.base/javafx/util/Pair.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/softart/task/talk/TalkServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1245">
-          <caret line="83" column="37" selection-start-line="83" selection-start-column="37" selection-end-line="83" selection-end-column="37" />
+        <state relative-caret-position="883">
+          <caret line="136" column="16" lean-forward="true" selection-start-line="136" selection-start-column="16" selection-end-line="136" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1157#1158#0" expanded="true" />
             <element signature="e#1211#1212#0" expanded="true" />
-            <element signature="class#MsgRouterThread#0" />
-            <element signature="e#3010#3011#0" expanded="true" />
-            <element signature="e#3047#3048#0" expanded="true" />
-            <element signature="class#BlockList#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/softart/SyncWorks.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3062#3063#0" expanded="true" />
-            <element signature="e#3098#3099#0" expanded="true" />
           </folding>
         </state>
       </provider>

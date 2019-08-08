@@ -20,10 +20,10 @@ public class TaskGroove implements Runnable {
 
     @Override
     public void run() {
+        boolean checkpass = false;
+        TaskStartRequestFeature request = null;
 
         while (true) {
-
-            TaskStartRequestFeature request = null;
             try {
                 request = new TaskStartRequest(inputStream);
             } catch (MsgException e) {
@@ -43,25 +43,27 @@ public class TaskGroove implements Runnable {
             }
 
 
-            String type = request.taskMark();
+            String taskType = request.taskMark();
 
             try {
 
                 ReplyFeature reply = null;
-                if (!this.server.getpStack().containsKey(type)) {
-                    reply = new Reply(token, false).supply("未知权限<"+type+">.");
+                if (!this.server.getpStack().containsKey(taskType)) {
+                    reply = new Reply(token, false).supply("未知权限<"+taskType+">.");
                     reply.postReply(outputStream);
                     continue;
                 }
 
 
-                if (!server.getAuthSrv().authCheck(request.getUuidStr(), request.getKeyString(), type)) {
-                    reply = new Reply(token, false).supply("权限不足<"+type+">.");
+                if (!server.getAuthSrv().authCheck(request.getUuidStr(), request.getKeyString(), taskType)) {
+                    reply = new Reply(token, false).supply("权限不足<"+taskType+">.");
                     reply.postReply(outputStream);
                     continue;
                 } else {
                     reply = new Reply(token, true).supply("Please Continue");
                     reply.postReply(outputStream);
+                    checkpass = true;
+                    break;
                 }
 
             } catch (MsgException e) {
@@ -69,11 +71,14 @@ public class TaskGroove implements Runnable {
                 e.printStackTrace();
                 break;
             }
+        }
 
-
-            TaskServer processor = server.getpStack().get(request.taskMark())
-                    .newEntities(request, inputStream, outputStream);
-            processor.taskProcess();
+        if (checkpass){
+            while (true) {
+                TaskServer processor = server.getpStack().get(request.taskMark())
+                        .newEntities(request, inputStream, outputStream);
+                processor.taskProcess();
+            }
         }
 
         try {

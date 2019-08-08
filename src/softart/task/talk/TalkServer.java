@@ -1,12 +1,11 @@
 package softart.task.talk;
 
-import javafx.util.Pair;
 import softart.MsgException;
+import softart.basictype.*;
 import softart.task.TaskServer;
 import softart.task.TaskStartRequestFeature;
 
 import java.io.*;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -61,21 +60,17 @@ public class TalkServer implements TaskServer {
      */
     @Override
     public void taskProcess() {
-        System.out.println("Talk Server Started.");
+        try {
+            MsgPostRequest req = new MsgPostRequest(inputStream);
 
-        while (true){
-            try {
-                MsgPostRequest req = new MsgPostRequest(inputStream);
-
-                ArrayList<String> list = req.getTargetsUser();
-                for (String usr:list){
-                    msg_service.postMsg(usr, req.getMessage());
-                }
-            } catch (MsgException e) {
-                msg_service.disconnect(request.getUuidStr());
-                System.out.println(e.type()+"<"+e.getDetail()+">.");
-                e.printStackTrace();
+            ArrayList<String> list = req.getTargetsUser();
+            for (String usr:list){
+                msg_service.postMsg(usr, req.getMessage());
             }
+        } catch (MsgException e) {
+            msg_service.disconnect(request.getUuidStr());
+            System.out.println(e.type()+"<"+e.getDetail()+">.");
+            e.printStackTrace();
         }
     }
 }
@@ -83,7 +78,7 @@ public class TalkServer implements TaskServer {
 
 class MsgRouterThread extends Thread {
     private BlockedMap<BufferedWriter> UserPool = new BlockedMap<>();
-    private LinkedBlockingQueue<Pair<String, String>> msgQueue =
+    private LinkedBlockingQueue<SWPair<String, String>> msgQueue =
             new LinkedBlockingQueue<>();
 
     @Override
@@ -91,7 +86,7 @@ class MsgRouterThread extends Thread {
         while (true){
 
             try {
-                Pair<String, String> msgItem = msgQueue.take();
+                SWPair<String, String> msgItem = msgQueue.take();
                 BufferedWriter outPort = UserPool.get(msgItem.getKey());
 
                 if (outPort!=null){
@@ -139,7 +134,7 @@ class MsgRouterThread extends Thread {
      */
     public void postMsg(String toUuid, String msg) {
         try {
-            msgQueue.put(new Pair<>(toUuid, msg));
+            msgQueue.put(new SWPair<>(toUuid, msg));
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
