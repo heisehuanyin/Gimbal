@@ -68,6 +68,12 @@ public class Request implements RequestFeature {
             while (!temp.equals("MSG_SPLIT")) {
                 content += temp;
                 temp = reader.readLine();
+
+                if (temp == null){
+                    MsgException e = new MsgException("断开连接");
+                    e.setDetail("socket连接已断开。");
+                    throw e;
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
