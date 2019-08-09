@@ -7,15 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c0437020-b7ad-453a-a10a-a90b75675065" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/softart/task/talk/BlockedMap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/softart/task/talk/MsgRouterThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/softart/SyncWorksClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/softart/SyncWorksClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/softart/SyncWorksServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/softart/SyncWorksServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/softart/basictype/SWPair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/softart/basictype/SPair.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/softart/task/TaskGroove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/softart/task/Transaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/softart/task/TaskServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/softart/task/TaskProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/softart/task/talk/TalkServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/softart/task/talk/TalkServer.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,8 +21,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/softart/SyncWorksServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1005">
-              <caret line="87" column="44" lean-forward="true" selection-start-line="87" selection-start-column="44" selection-end-line="87" selection-end-column="44" />
+            <state relative-caret-position="278">
+              <caret line="66" column="31" selection-start-line="66" selection-start-column="31" selection-end-line="66" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;method#SyncWorksServer#0;class#SyncWorksServer#0" />
@@ -53,8 +45,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/softart/task/talk/MsgRouterThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="9" column="66" selection-start-line="9" selection-start-column="66" selection-end-line="9" selection-end-column="66" />
+            <state relative-caret-position="152">
+              <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -132,9 +124,9 @@
         <option value="$PROJECT_DIR$/src/softart/basictype/Pair.java" />
         <option value="$PROJECT_DIR$/src/softart/SyncWorksClient.java" />
         <option value="$PROJECT_DIR$/src/softart/task/TaskGroove.java" />
-        <option value="$PROJECT_DIR$/src/softart/SyncWorksServer.java" />
         <option value="$PROJECT_DIR$/src/softart/task/Transaction.java" />
         <option value="$PROJECT_DIR$/src/softart/task/talk/TalkServer.java" />
+        <option value="$PROJECT_DIR$/src/softart/SyncWorksServer.java" />
         <option value="$PROJECT_DIR$/src/softart/task/talk/MsgRouterThread.java" />
       </list>
     </option>
@@ -231,7 +223,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1565328355000" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1565329889665" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -359,7 +351,7 @@
     <frame x="50" y="23" width="1390" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5464968" visible="true" weight="0.21587537" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5464968" visible="true" weight="0.21587537" />
       <window_info id="Image Layers" order="1" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -367,7 +359,7 @@
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3299363" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.28535032" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.28535032" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -604,19 +596,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/softart/SyncWorksServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1005">
-          <caret line="87" column="44" lean-forward="true" selection-start-line="87" selection-start-column="44" selection-end-line="87" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;method#SyncWorksServer#0;class#SyncWorksServer#0" />
-            <element signature="method#SyncWorksServer#0;class#SyncWorksServer#0" />
-            <element signature="docComment;method#registerProcess#0;class#SyncWorksServer#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/softart/task/Transaction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="585">
@@ -643,10 +622,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/softart/SyncWorksServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="66" column="31" selection-start-line="66" selection-start-column="31" selection-end-line="66" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;method#SyncWorksServer#0;class#SyncWorksServer#0" />
+            <element signature="method#SyncWorksServer#0;class#SyncWorksServer#0" />
+            <element signature="docComment;method#registerProcess#0;class#SyncWorksServer#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/softart/task/talk/MsgRouterThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="9" column="66" selection-start-line="9" selection-start-column="66" selection-end-line="9" selection-end-column="66" />
+        <state relative-caret-position="152">
+          <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
         </state>
       </provider>
     </entry>

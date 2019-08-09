@@ -64,6 +64,7 @@ public class SyncWorksServer {
                 ArrayList<String> list = new ArrayList<>();
                 list.add(cell.getUuidStr());
                 daemons.put(cell.taskMark(), new SPair<>(daemon, list));
+                daemon.start();
 
                 return daemon;
             }
