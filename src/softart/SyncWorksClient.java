@@ -81,10 +81,11 @@ class MsgAcceptWorker extends Thread{
         while (true){
             try {
                 String msgitem = reader.readLine();
-                System.out.println(msgitem);
 
                 if (msgitem==null)
-                    break;
+                    System.exit(0);
+
+                System.out.println(msgitem);
             } catch (IOException e) {
                 e.printStackTrace();
                 break;

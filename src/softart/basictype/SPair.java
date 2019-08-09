@@ -1,10 +1,10 @@
 package softart.basictype;
 
-public class SWPair<K,V> {
+public class SPair<K,V> {
     private final K key;
     private final V value;
 
-    public SWPair(K key, V value){
+    public SPair(K key, V value){
         this.key = key;
         this.value = value;
     }

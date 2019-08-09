@@ -1,7 +1,9 @@
 package softart;
 
-import softart.task.TaskGroove;
-import softart.task.TaskServer;
+import softart.basictype.SPair;
+import softart.task.TaskProcessor;
+import softart.task.TaskStartRequestFeature;
+import softart.task.Transaction;
 import softart.task.talk.TalkServer;
 
 import java.io.IOException;
@@ -9,6 +11,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -17,17 +20,15 @@ import java.util.concurrent.TimeUnit;
 public class SyncWorksServer {
     private ServerSocket serverSocket = null;
     private AuthServiceFeature empower = null;
-    private HashMap<String, TaskServer> pStack = new HashMap<>();
+    private HashMap<String, TaskProcessor> pStack = new HashMap<>();
+
+
     private ThreadPoolExecutor tPool = new ThreadPoolExecutor(4, 500,
             1, TimeUnit.HOURS, new LinkedBlockingDeque<Runnable>());
 
-    public AuthServiceFeature getAuthSrv() {
-        return this.empower;
-    }
+    //              taskMask,
+    private HashMap<String, SPair<Thread, ArrayList<String>>> daemons = new HashMap<>();
 
-    public HashMap<String, TaskServer> getpStack() {
-        return this.pStack;
-    }
 
     /**
      * 生成同步服务器，指明服务器监听端口
@@ -51,14 +52,62 @@ public class SyncWorksServer {
      *
      * @param processor 针对性的任务处理器
      */
-    public void registerProcess(TaskServer processor) {
+    public void registerProcess(TaskProcessor processor) {
         this.pStack.put(processor.taskMask(), processor);
+    }
+
+    public Thread registerDaemons(TaskStartRequestFeature cell, Thread daemon){
+        synchronized (this){
+            SPair<Thread, ArrayList<String>> one = daemons.get(cell.taskMark());
+
+            if (one == null){
+                ArrayList<String> list = new ArrayList<>();
+                list.add(cell.getUuidStr());
+                daemons.put(cell.taskMark(), new SPair<>(daemon, list));
+
+                return daemon;
+            }
+            else {
+                if (one.getValue().contains(cell.getUuidStr()))
+                    return one.getKey();
+
+                one.getValue().add(cell.getUuidStr());
+                daemons.put(cell.taskMark(), new SPair<>(one.getKey(), one.getValue()));
+                return one.getKey();
+            }
+        }
+    }
+
+    public void closeDaemons(TaskStartRequestFeature cell){
+        synchronized (this){
+            SPair<Thread, ArrayList<String>> one = daemons.get(cell.taskMark());
+
+            if (one == null)
+                return;
+
+            if (one.getValue().size() <= 1){
+                daemons.remove(cell.taskMark());
+                return;
+            }
+
+            one.getValue().remove(cell.getUuidStr());
+        }
+    }
+
+
+
+    public AuthServiceFeature getAuthSrv() {
+        return this.empower;
+    }
+
+    public HashMap<String, TaskProcessor> getpStack() {
+        return this.pStack;
     }
 
     /**
      * 进入主循环，正式工作
      */
-    public void waitFor() {
+    public void workLoop() {
 
         while (true) {
 
@@ -116,7 +165,7 @@ public class SyncWorksServer {
                 }
 
 
-                TaskGroove unit = new TaskGroove(this, newToken, input, output);
+                Transaction unit = new Transaction(this, newToken, input, output);
                 this.tPool.execute(unit);
 
             } catch (IOException e) {
@@ -136,7 +185,7 @@ public class SyncWorksServer {
         SyncWorksServer one = new SyncWorksServer(Integer.parseInt(args[0]), service);
 
         one.registerProcess(new TalkServer());
-        one.waitFor();
+        one.workLoop();
     }
 }
 

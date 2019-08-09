@@ -4,13 +4,16 @@ import softart.*;
 
 import java.io.*;
 
-public class TaskGroove implements Runnable {
+public class Transaction implements Runnable {
     private SyncWorksServer server = null;
     private String token = "";
     private InputStream inputStream = null;
     private OutputStream outputStream = null;
 
-    public TaskGroove(SyncWorksServer server, String token, InputStream input, OutputStream output) {
+    private TaskStartRequestFeature request = null;
+
+    public Transaction(SyncWorksServer server, String token,
+                       InputStream input, OutputStream output) {
         this.server = server;
         this.token = token;
 
@@ -21,8 +24,8 @@ public class TaskGroove implements Runnable {
     @Override
     public void run() {
         boolean checkpass = false;
-        TaskStartRequestFeature request = null;
 
+        // 鉴权服务
         while (true) {
             try {
                 request = new TaskStartRequest(inputStream);
@@ -49,14 +52,14 @@ public class TaskGroove implements Runnable {
 
                 ReplyFeature reply = null;
                 if (!this.server.getpStack().containsKey(taskType)) {
-                    reply = new Reply(token, false).supply("未知权限<"+taskType+">.");
+                    reply = new Reply(token, false).supply("未知权限<" + taskType + ">.");
                     reply.postReply(outputStream);
                     continue;
                 }
 
 
                 if (!server.getAuthSrv().authCheck(request.getUuidStr(), request.getKeyString(), taskType)) {
-                    reply = new Reply(token, false).supply("权限不足<"+taskType+">.");
+                    reply = new Reply(token, false).supply("权限不足<" + taskType + ">.");
                     reply.postReply(outputStream);
                     continue;
                 } else {
@@ -73,20 +76,37 @@ public class TaskGroove implements Runnable {
             }
         }
 
-        if (checkpass){
+        // 陷入工作处理过程
+        if (checkpass) {
             while (true) {
-                TaskServer processor = server.getpStack().get(request.taskMark())
-                        .newEntities(request, inputStream, outputStream);
-                processor.taskProcess();
+                TaskProcessor processor = server.getpStack().get(request.taskMark())
+                        .newEntities(this, request, inputStream, outputStream);
+
+                try {
+                    processor.taskProcess();
+                } catch (MsgException e) {
+                    System.out.println(e.type() + "<" + e.getDetail() + ">.");
+                    e.printStackTrace();
+                    break;
+                }
             }
         }
 
         try {
+            this.closeDaemons();
             outputStream.close();
             inputStream.close();
         } catch (IOException e) {
             System.out.println("Socket关闭异常+++++++++++++");
             e.printStackTrace();
         }
+    }
+
+    public Thread registerDaemons(Thread daemon) {
+        return server.registerDaemons(request, daemon);
+    }
+
+    private void closeDaemons() {
+        server.closeDaemons(request);
     }
 }
