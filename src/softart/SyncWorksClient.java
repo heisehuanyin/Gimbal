@@ -4,11 +4,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 import softart.task.TaskStartRequest;
-import softart.task.TaskStartRequestFeature;
 import softart.task.talk.MsgPostRequest;
 import softart.task.talk.TalkStartRequest;
 
-import javax.print.Doc;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -30,10 +28,12 @@ public class SyncWorksClient {
     private OutputStream outputStream = null;
     private final String uuid;
     private final String pswd;
+    private final String uuid2;
 
-    public SyncWorksClient(String uuid, String pswd) {
+    public SyncWorksClient(String uuid, String pswd, String uuid2) {
         this.uuid = uuid;
         this.pswd = pswd;
+        this.uuid2 = uuid2;
         File file = new File("./config.xml");
 
         if (!file.exists()) {
@@ -101,7 +101,7 @@ public class SyncWorksClient {
                 String line = can.nextLine();
 
                 MsgPostRequest msgone = new MsgPostRequest(this.uuid, "token");
-                msgone.appendTargetUser(this.uuid);
+                msgone.appendTargetUser(this.uuid2);
                 msgone.setMessage(line);
 
                 msgone.postRequest(outputStream);
@@ -114,7 +114,7 @@ public class SyncWorksClient {
     }
 
     public static void main(String[] args) {
-        SyncWorksClient one = new SyncWorksClient(args[0], args[1]);
+        SyncWorksClient one = new SyncWorksClient(args[0], args[1], args[2]);
         one.doWork();
     }
 }

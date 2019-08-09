@@ -7,7 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c0437020-b7ad-453a-a10a-a90b75675065" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/softart/SyncWorksClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/softart/SyncWorksClient.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -19,28 +18,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/softart/SyncWorksClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1395">
-              <caret line="106" column="49" selection-start-line="106" selection-start-column="49" selection-end-line="106" selection-end-column="49" />
+            <state relative-caret-position="120">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
               <folding>
-                <element signature="imports" expanded="true" />
                 <element signature="e#1632#1692#0" />
                 <element signature="e#1732#1776#0" />
                 <element signature="e#1872#1916#0" />
                 <element signature="e#1939#1983#0" />
-                <element signature="e#3827#3828#0" expanded="true" />
+                <element signature="e#3842#3843#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/config.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="66" selection-start-column="66" selection-end-column="66" />
             </state>
           </provider>
         </entry>
@@ -120,8 +109,8 @@
         <option value="$PROJECT_DIR$/src/softart/SyncWorksServer.java" />
         <option value="$PROJECT_DIR$/src/softart/task/talk/MsgRouterThread.java" />
         <option value="$PROJECT_DIR$/src/softart/Request.java" />
-        <option value="$PROJECT_DIR$/src/softart/SyncWorksClient.java" />
         <option value="$PROJECT_DIR$/config.xml" />
+        <option value="$PROJECT_DIR$/src/softart/SyncWorksClient.java" />
       </list>
     </option>
   </component>
@@ -217,7 +206,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1565353062691" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1565355324079" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -243,7 +232,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.SyncWorksClient">
+  <component name="RunManager" selected="Application.SyncWorksServer">
     <configuration name="SyncWorksClient" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="softart.SyncWorksClient" />
       <module name="SyncWorks" />
@@ -343,9 +332,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="50" y="23" width="1390" height="877" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5464968" visible="true" weight="0.21587537" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5464968" visible="true" weight="0.21587537" />
       <window_info id="Image Layers" order="1" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -353,7 +341,7 @@
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3299363" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.28535032" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.28535032" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -640,25 +628,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/softart/SyncWorksClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1395">
-          <caret line="106" column="49" selection-start-line="106" selection-start-column="49" selection-end-line="106" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1632#1692#0" />
-            <element signature="e#1732#1776#0" />
-            <element signature="e#1872#1916#0" />
-            <element signature="e#1939#1983#0" />
-            <element signature="e#3827#3828#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="66" selection-start-column="66" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/softart/SyncWorksClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#1632#1692#0" />
+            <element signature="e#1732#1776#0" />
+            <element signature="e#1872#1916#0" />
+            <element signature="e#1939#1983#0" />
+            <element signature="e#3842#3843#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
