@@ -1,14 +1,18 @@
 package softart;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.xml.sax.SAXException;
 import softart.basictype.SPair;
 import softart.task.TaskProcessor;
 import softart.task.TaskStartRequestFeature;
 import softart.task.Transaction;
 import softart.task.talk.TalkServer;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -149,12 +153,16 @@ public class SyncWorksServer {
                 String newToken = empower.newToken(uuid, pswd);
                 try {
                     ReplyFeature reply = null;
-                    if (newToken.equals(""))
+                    if (newToken.equals("")){
                         reply = new Reply("NO_TOKEN", false).supply("用户名或密码错误");
-                    else
+                        reply.postReply(output);
+                        continue;
+                    }
+                    else{
                         reply = new Reply(newToken, true).supply("Welcome");
+                        reply.postReply(output);
+                    }
 
-                    reply.postReply(output);
                 } catch (MsgException e) {
                     System.out.println("登录回复过程异常++++++++++++++");
                     System.out.println(e.type() + "<" + e.getDetail() + ">.");
@@ -178,12 +186,60 @@ public class SyncWorksServer {
 
 
     public static void main(String[] args) {
-        if (args.length < 1) {
-            System.out.println("未输入必要端口号参数");
+        File file = new File("./server_config.xml");
+        if (!file.exists()){
+            try {
+                FileWriter writer = new FileWriter(file);
+                writer.write("<?xml version='1.0' encoding='UTF-8'?>" +
+                        "<root>" +
+                        "<server-port>52525</server-port>" +
+                        "<db-addr>127.0.0.1</db-addr>" +
+                        "<db-port>3306</db-port>" +
+                        "<db-name>web_account</db-name>" +
+                        "<db-account>ws</db-account>" +
+                        "<db-pswd>wspassword</db-pswd>" +
+                        "</root>");
+                writer.flush();
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return;
+            }
         }
 
-        AuthServiceFeature service = new AuthService();
-        SyncWorksServer one = new SyncWorksServer(Integer.parseInt(args[0]), service);
+
+
+
+        Document doc = null;
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            doc = builder.parse(file);
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+            return;
+        } catch (SAXException e) {
+            e.printStackTrace();
+            return;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        Element serPort = (Element) doc.getElementsByTagName("server-port").item(0);
+        Element dbAddress = (Element) doc.getElementsByTagName("db-addr").item(0);
+        Element dbPort = (Element) doc.getElementsByTagName("db-port").item(0);
+        Element dbName = (Element) doc.getElementsByTagName("db-name").item(0);
+        Element dbAccount = (Element) doc.getElementsByTagName("db-account").item(0);
+        Element dbPswd = (Element) doc.getElementsByTagName("db-pswd").item(0);
+
+        AuthServiceFeature service = new AuthService(dbAddress.getTextContent(),
+                dbPort.getTextContent(),
+                dbName.getTextContent(),
+                dbAccount.getTextContent(),
+                dbPswd.getTextContent());
+
+        SyncWorksServer one = new SyncWorksServer(Integer.parseInt(serPort.getTextContent()), service);
 
         one.registerProcess(new TalkServer());
         one.workLoop();

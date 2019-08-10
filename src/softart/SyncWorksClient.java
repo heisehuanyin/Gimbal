@@ -87,20 +87,34 @@ public class SyncWorksClient {
     }
 
     public void doWork() {
-        new MsgAcceptWorker(inputStream).start();
+        String tokenString = "";
 
         try {
             RequestFeature login = new Request(this.uuid, this.pswd);
             login.postRequest(outputStream);
-            TaskStartRequest start = new TalkStartRequest(this.uuid, "token");
-            start.postRequest(outputStream);
 
+            ReplyFeature reply = new Reply(inputStream);
+            if (!reply.result())
+                return;
+            tokenString = reply.token();
+
+
+
+            TaskStartRequest start = new TalkStartRequest(this.uuid, tokenString);
+            start.postRequest(outputStream);
+            reply = new Reply(inputStream);
+
+            if (!reply.result())
+                return;
+
+
+            new MsgAcceptWorker(inputStream).start();
             Scanner can = new Scanner(System.in);
 
             while (true) {
                 String line = can.nextLine();
 
-                MsgPostRequest msgone = new MsgPostRequest(this.uuid, "token");
+                MsgPostRequest msgone = new MsgPostRequest(this.uuid, tokenString);
                 msgone.appendTargetUser(this.uuid2);
                 msgone.setMessage(line);
 

@@ -1,0 +1,1 @@
+<?xml version='1.0' encoding='UTF-8'?><root><server-port>52525</server-port><db-addr>192.168.0.105</db-addr><db-port>3306</db-port><db-name>web_account</db-name><db-account>ws</db-account><db-pswd>wspassword</db-pswd></root>

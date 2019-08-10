@@ -2,6 +2,8 @@ package softart;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -38,13 +40,87 @@ public class Reply implements ReplyFeature {
         root.appendChild(tokenEntry);
 
         Element resultEntry = doc.createElement("result");
-        resultEntry.setTextContent(result?"TRUE":"FALSE");
+        resultEntry.setTextContent(result ? "TRUE" : "FALSE");
         root.appendChild(resultEntry);
 
 
         Element supply = doc.createElement("server-said");
         supply.setTextContent("NO_MESSAGE.");
         root.appendChild(supply);
+    }
+
+    public Reply(InputStream input) throws MsgException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(
+                input, Charset.forName("UTF-8")
+        ));
+
+        String content = "", temp = "";
+        try {
+            while (!temp.equals("MSG_SPLIT")) {
+                content += temp;
+                temp = reader.readLine();
+
+                if (temp == null) {
+                    MsgException e = new MsgException("断开连接");
+                    e.setDetail("socket连接已断开。");
+                    throw e;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            MsgException one = new MsgException("请求获取过程异常");
+            one.setDetail("读取提交的请求数据过程中出现io错误");
+            throw one;
+        }
+
+
+        DocumentBuilder builder = null;
+        try {
+            builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+            MsgException one = new MsgException("请求解析过程异常");
+            one.setDetail("无法建立解析请求用DocumentBuilder");
+            throw one;
+        }
+
+
+        try {
+            doc = builder.parse(new ByteArrayInputStream(content.getBytes("UTF-8")));
+        } catch (SAXException e) {
+            e.printStackTrace();
+            MsgException one = new MsgException("请求解析过程异常");
+            one.setDetail("请求格式错误或其他");
+            throw one;
+        } catch (IOException e) {
+            e.printStackTrace();
+            MsgException one = new MsgException("请求解析过程异常");
+            one.setDetail("接收到的请求编码错误或其他");
+            throw one;
+        }
+
+
+        NodeList target = doc.getElementsByTagName("token");
+        if (target.getLength() != 1) {
+            MsgException one = new MsgException("回复参数异常");
+            one.setDetail("请求不存在token或多个token参数");
+            throw one;
+        }
+
+        target = doc.getElementsByTagName("result");
+        if (target.getLength() != 1) {
+            MsgException one = new MsgException("回复参数异常");
+            one.setDetail("请求不存在result或多个result参数");
+            throw one;
+        }
+
+        target = doc.getElementsByTagName("server-said");
+        if (target.getLength() != 1) {
+            MsgException one = new MsgException("回复参数异常");
+            one.setDetail("请求不存在server-said或多个server-said参数");
+            throw one;
+        }
+
     }
 
     /**
@@ -104,7 +180,7 @@ public class Reply implements ReplyFeature {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         String result = null;
         TransformerFactory tfac = TransformerFactory.newInstance();
         StringWriter strWtr = new StringWriter();

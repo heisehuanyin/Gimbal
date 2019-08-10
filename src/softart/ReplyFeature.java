@@ -3,6 +3,7 @@ package softart;
 import java.io.OutputStream;
 
 public interface ReplyFeature {
+
     /**
      * 返回结果是否成功
      * @return 成功与否
