@@ -7,14 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c0437020-b7ad-453a-a10a-a90b75675065" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/softart/database/DatabasePort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/SyncWorks_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyncWorks.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/softart/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/softart/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/softart/Reply.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/softart/Reply.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/softart/ReplyFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/softart/ReplyFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/softart/SyncWorksClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/softart/SyncWorksClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/softart/SyncWorksServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/softart/SyncWorksServer.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,54 +23,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/softart/SyncWorksClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1264">
+            <state relative-caret-position="661">
               <caret line="116" column="83" selection-start-line="116" selection-start-column="83" selection-end-line="116" selection-end-column="83" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3805#3806#0" expanded="true" />
-                <element signature="e#3842#3843#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/softart/SyncWorksServer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="192" column="69" selection-start-line="192" selection-start-column="69" selection-end-line="192" selection-end-column="69" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="docComment;method#SyncWorksServer#0;class#SyncWorksServer#0" />
-                <element signature="method#SyncWorksServer#0;class#SyncWorksServer#0" />
-                <element signature="docComment;method#registerProcess#0;class#SyncWorksServer#0" />
-                <element signature="e#3631#4248#0" />
-                <element signature="e#6702#6781#0" />
-                <element signature="e#6821#6865#0" />
-                <element signature="e#7023#7067#0" />
-                <element signature="e#7090#7134#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/config.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="70" selection-start-column="70" selection-end-column="70" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/softart/database/DatabasePort.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="439">
-              <caret line="76" selection-start-line="76" selection-end-line="76" />
             </state>
           </provider>
         </entry>
@@ -104,7 +62,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/com/softart/tasks/TaskRequestFeature.java" />
         <option value="$PROJECT_DIR$/src/com/softart/tasks/AbstractTaskUnit.java" />
         <option value="$PROJECT_DIR$/src/com/softart/tasks/TaskProcessor.java" />
         <option value="$PROJECT_DIR$/src/com/softart/tasks/GeneralTaskRequest.java" />
@@ -155,6 +112,7 @@
         <option value="$PROJECT_DIR$/src/softart/SyncWorksServer.java" />
         <option value="$PROJECT_DIR$/server_config.xml" />
         <option value="$PROJECT_DIR$/config.xml" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -164,8 +122,8 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="50" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="51" />
     <option name="y" value="23" />
     <option name="width" value="1390" />
     <option name="height" value="877" />
@@ -181,59 +139,25 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="SyncWorks" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SyncWorks" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SyncWorks" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SyncWorks" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SyncWorks" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SyncWorks" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SyncWorks" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SyncWorks" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
-              <item name="SyncWorks_jar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SyncWorks" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SyncWorks" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SyncWorks" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SyncWorks" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="softart" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SyncWorks" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SyncWorks" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
+              <item name="Gimbal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Gimbal" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1565429657062" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1565444298761" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
@@ -261,7 +185,7 @@
   <component name="RunManager" selected="Application.SyncWorksClient">
     <configuration name="SyncWorksClient" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="softart.SyncWorksClient" />
-      <module name="SyncWorks" />
+      <module name="Gimbal" />
       <option name="PROGRAM_PARAMETERS" value="root root-password root" />
       <extension name="coverage">
         <pattern>
@@ -275,7 +199,7 @@
     </configuration>
     <configuration name="SyncWorksServer" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="softart.SyncWorksServer" />
-      <module name="SyncWorks" />
+      <module name="Gimbal" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.softart.task.*" />
@@ -315,8 +239,8 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.SyncWorksServer" />
       <item itemvalue="Application.SyncWorksClient" />
+      <item itemvalue="Application.SyncWorksServer" />
     </list>
     <recent_temporary>
       <list>
@@ -351,10 +275,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="50" y="23" width="1390" height="877" extended-state="0" />
-    <editor active="true" />
+    <frame x="50" y="23" width="1390" height="877" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5464968" visible="true" weight="0.21884273" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5464968" visible="true" weight="0.23367952" />
       <window_info id="Image Layers" order="1" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -362,7 +285,7 @@
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3299363" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.22420382" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.22420382" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -531,18 +454,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="255">
-            <caret line="17" column="30" lean-forward="true" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
-          </first_editor>
-          <second_editor>
-            <markdownNavigatorState />
-          </second_editor>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/softart/task/talk/MsgRouterThread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -633,18 +544,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/softart/SyncWorksClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1264">
-          <caret line="116" column="83" selection-start-line="116" selection-start-column="83" selection-end-line="116" selection-end-column="83" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3805#3806#0" expanded="true" />
-            <element signature="e#3842#3843#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/softart/AuthService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -669,6 +568,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="70" selection-start-column="70" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/server_config.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -678,26 +584,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/softart/SyncWorksServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="192" column="69" selection-start-line="192" selection-start-column="69" selection-end-line="192" selection-end-column="69" />
+        <state relative-caret-position="-2287">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;method#SyncWorksServer#0;class#SyncWorksServer#0" />
             <element signature="method#SyncWorksServer#0;class#SyncWorksServer#0" />
             <element signature="docComment;method#registerProcess#0;class#SyncWorksServer#0" />
-            <element signature="e#3631#4248#0" />
-            <element signature="e#6702#6781#0" />
-            <element signature="e#6821#6865#0" />
-            <element signature="e#7023#7067#0" />
-            <element signature="e#7090#7134#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config.xml">
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="SPLIT">
+          <first_editor>
+            <caret column="8" selection-start-column="8" selection-end-column="8" />
+          </first_editor>
+          <second_editor>
+            <markdownNavigatorState />
+          </second_editor>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/softart/SyncWorksClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="70" selection-start-column="70" selection-end-column="70" />
+        <state relative-caret-position="661">
+          <caret line="116" column="83" selection-start-line="116" selection-start-column="83" selection-end-line="116" selection-end-column="83" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -707,11 +623,12 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>SyncWorks:jar</last-edited>
+          <last-edited>Gimbal:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
@@ -731,6 +648,7 @@
       </state>
       <state key="GlobalLibrariesConfigurable.UI">
         <settings>
+          <last-edited>com.sun.maven:maven-junit-plugin:1.5</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -754,12 +672,11 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>SyncWorks</last-edited>
+          <last-edited>Gimbal</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

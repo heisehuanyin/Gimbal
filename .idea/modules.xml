@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SyncWorks.iml" filepath="$PROJECT_DIR$/SyncWorks.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Gimbal.iml" filepath="$PROJECT_DIR$/Gimbal.iml" />
     </modules>
   </component>
 </project>
